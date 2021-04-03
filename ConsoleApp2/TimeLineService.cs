@@ -40,7 +40,7 @@ namespace ConsoleApp2
             return workTimes;
         }
 
-        public void TimeLineProcess(IEnumerable<TimeLine> timeLines)
+        public void TimeLineProcess(List<TimeLine> timeLines)
         {
             var workLines = timeLines.Where(x => x.IsAviable);
             SetWorkTime(workLines);

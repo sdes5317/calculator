@@ -16,7 +16,7 @@ namespace XUnitTestProject1
         {
             var testData = NormalWork();
 
-            _timeLineService.TimeLineProcess(testData.testData);
+            _timeLineService.TimeLineProcess(testData.testData.ToList());
             var actually = _timeLineService.GetWorkTime().ToList();
             var except = testData.except.ToList();
             for (int i = 0; i < except.Count; i++)
@@ -30,7 +30,7 @@ namespace XUnitTestProject1
         {
             var testData = NormalWorkAndMeeting();
 
-            _timeLineService.TimeLineProcess(testData.testData);
+            _timeLineService.TimeLineProcess(testData.testData.ToList());
             var actually = _timeLineService.GetWorkTime().ToList();
             var except = testData.except.ToList();
             for (int i = 0; i < except.Count; i++)
@@ -39,17 +39,7 @@ namespace XUnitTestProject1
             }
         }
 
-        TimeLine GetFakeTimeLine(bool isAviable, string name, DateTime start, DateTime end)
-        {
 
-            var timeLine = new TimeLine() { IsAviable = isAviable, Name = name };
-            for (int i = 0; i < (end - start).TotalMinutes; i++)
-            {
-                timeLine.Time.Add(start.AddMinutes(i).ToString("yyyy-M-d HH:mm"));
-            }
-
-            return timeLine;
-        }
 
         (IEnumerable<WorkTime> except, IEnumerable<TimeLine> testData) NormalWorkAndMeeting()
         {
@@ -84,13 +74,13 @@ namespace XUnitTestProject1
         {
             var start = new DateTime(2020, 10, 10, 8, 0, 0);
             var end = new DateTime(2020, 10, 10, 10, 0, 0);
-            return GetFakeTimeLine(true, "Work", start, end);
+            return new TimeLine(true, "Work", start, end);
         }
         private TimeLine GetMeeting()
         {
            var start = new DateTime(2020, 10, 10, 8, 0, 0);
            var end = new DateTime(2020, 10, 10, 8, 10, 0);
-           return GetFakeTimeLine(false, "Meeting", start, end);
+           return new TimeLine(false, "Meeting", start, end);
         }
     }
 }

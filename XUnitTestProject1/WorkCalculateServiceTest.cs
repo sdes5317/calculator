@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleApp2;
 using Xunit;
 
@@ -16,7 +17,7 @@ namespace XUnitTestProject1
         public void Test1(IEnumerable<WorkTime> workTimes, DateTime targetTime, int exceptSecond)
         {
 
-            Assert.Equal(exceptSecond, _calculateService.Calculate(workTimes, targetTime));
+            Assert.Equal(exceptSecond, _calculateService.Calculate(workTimes.ToList(), targetTime));
         }
     }
     public class WorkTimeTestData : IEnumerable<object[]>

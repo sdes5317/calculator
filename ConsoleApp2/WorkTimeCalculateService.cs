@@ -7,7 +7,7 @@ namespace ConsoleApp2
 {
     public class WorkTimeCalculateService
     {
-        public int Calculate(IEnumerable<WorkTime> workTimes, DateTime targetTime)
+        public int Calculate(List<WorkTime> workTimes, DateTime targetTime)
         {
             var workFinish = workTimes.Where(workTime => workTime.End < targetTime).Select(workTime =>
                 (workTime.End - workTime.Start).TotalSeconds).Sum();
