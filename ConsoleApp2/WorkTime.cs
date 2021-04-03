@@ -5,7 +5,7 @@ namespace ConsoleApp2
 {
     public class WorkTime
     {
-        public WorkTime(DateTime start,DateTime end)
+        public WorkTime(DateTime start, DateTime end)
         {
             Start = start;
             End = end;
